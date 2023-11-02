@@ -1,4 +1,5 @@
 import turtle
+import os
 
 window = turtle.Screen()
 window.title("Pong game")
@@ -91,10 +92,14 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
-    
+        os.system("afplay jump.mp3&")
+
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
+        os.system("afplay jump.mp3&")
+
+
 
     if ball.xcor() > 390:
         ball.goto(0, 0)
@@ -113,12 +118,16 @@ while True:
 
     
     #Paddle and ball collisions
-    if (ball.xcor() >340 and ball.xcor() <350 )and (ball.ycor()<paddle_b.ycor()+40+ ball.ycor() > paddle_b.ycor() - 40):
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50):
         ball.setx(340)
         ball.dx *= -1
-    
-    if (ball.xcor() < -340 and ball.xcor() > -350 )and (ball.ycor()< paddle_a.ycor()+40+ ball.ycor() > paddle_a.ycor() - 40):
+        os.system("afplay jump.mp3&")
+
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50):
         ball.setx(-340)
         ball.dx *= -1
+        os.system("afplay jump.mp3&")
+
+
 
 
