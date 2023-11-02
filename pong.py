@@ -6,6 +6,10 @@ window.bgcolor("black")
 window.setup(width=800, height=600)
 window.tracer(0) #stops the window from updating
 
+#Score 
+score_a = 0
+score_b = 0
+
 #Paddle A
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)
@@ -55,6 +59,14 @@ def paddle_b_down():
     y -=20
     paddle_b.sety(y)
 
+#pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Player A: 0 Player B: 0", align="Center", font=("Courier", 24, "normal"))
 
 #Keyboard binding
 window.listen() #it listens keyboard's strokes
@@ -87,10 +99,18 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.dx *=-1
+        score_a +=1
+        pen.clear()
+        pen.write("Player A: {} Player B: {}".format(score_a, score_b), align="Center", font=("Courier", 24, "normal"))
+        
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *=-1
+        score_b +=1
+        pen.clear()
+        pen.write("Player A: {} Player B: {}".format(score_a, score_b), align="Center", font=("Courier", 24, "normal"))
+
     
     #Paddle and ball collisions
     if (ball.xcor() >340 and ball.xcor() <350 )and (ball.ycor()<paddle_b.ycor()+40+ ball.ycor() > paddle_b.ycor() - 40):
@@ -100,5 +120,5 @@ while True:
     if (ball.xcor() < -340 and ball.xcor() > -350 )and (ball.ycor()< paddle_a.ycor()+40+ ball.ycor() > paddle_a.ycor() - 40):
         ball.setx(-340)
         ball.dx *= -1
-    
+
 
